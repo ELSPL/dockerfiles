@@ -1,7 +1,9 @@
 # 2018-01-12: This Dockerfile is based on http://files.fast.ai/setup/paperspace
-# README: https://github.com/MattKleinsmith/dockerfiles/tree/master/fastai
+# README: https://github.com/Edutech-ARM/dockerfiles/tree/master/fastai
 
 FROM nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
+
+LABEL com.nvidia.volumes.needed="nvidia_driver"
 
 # To allow unicode characters in the terminal
 ENV LANG C.UTF-8
@@ -10,11 +12,25 @@ ENV LANG C.UTF-8
 ## Tools ##
 ###########
 
-RUN apt-get update --fix-missing && apt-get install -y \
+RUN echo "deb http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64 /" > /etc/apt/sources.list.d/nvidia-ml.list
+
+RUN apt-get update --fix-missing && apt-get install -y --allow-downgrades \
+    build-essential \
+    cmake \
     wget \
+    curl \
+    aria2 \
     vim \
     git \
-    unzip
+    tmux \
+    ca-certificates \
+    libnccl2=2.0.5-3+cuda9.0 \
+    libnccl-dev=2.0.5-3+cuda9.0 \
+    python-qt4 \
+    libjpeg-dev \
+    zip \
+    unzip \
+    libpng-dev
 
 ##############
 ## Anaconda ##
