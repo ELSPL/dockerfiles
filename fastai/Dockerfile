@@ -3,6 +3,9 @@
 
 FROM nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
 
+# Adds metadata to the image as a key value pair example LABEL version="1.0"
+LABEL maintainer="Dwijay Bane <dwijaybane2@gmail.com>"
+
 LABEL com.nvidia.volumes.needed="nvidia_driver"
 
 # To allow unicode characters in the terminal
