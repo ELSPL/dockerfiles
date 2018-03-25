@@ -1,5 +1,7 @@
 # Docker for fast.ai
+![Docker Automated build](https://img.shields.io/docker/automated/jrottenberg/ffmpeg.svg)
 
+![Docker Build Status](https://img.shields.io/docker/build/jrottenberg/ffmpeg.svg)
 ## Why Docker
 
 - If you make a mistake while sorting out a mess of dependencies, you can just delete the Docker container and start from a fresh one; as opposed to trying to undo it on your operating system.
