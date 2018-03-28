@@ -57,10 +57,14 @@ or
 ---
 
 To allow for faster access next time, enter the following into your host machine's terminal, only once:
+```
+echo "CODE=~/docker_mount/code" >> ~/.bashrc
+echo "DATA=~/docker_mount/data" >> ~/.bashrc
 
-`echo "alias fastai=\"nvidia-docker run --rm --init -it --name container1 -p 8888:8888 -v $CODE:/code -v $DATA:/data -w="/code/fastai" streaminterrupt/fastai:cuda9-cudnn7-ubuntu16.04\"" >> ~/.bashrc`
+echo "alias fastai=\"nvidia-docker run --rm --init -it --name container1 -p 8888:8888 -v $CODE:/code -v $DATA:/data -w="/code/fastai" streaminterrupt/fastai:cuda9-cudnn7-ubuntu16.04\"" >> ~/.bashrc
 
-`source ~/.bashrc`
+source ~/.bashrc
+```
 
 ---
 
@@ -117,6 +121,19 @@ A Jupyter server will now be running in a fastai environment with all of fastai'
 1. Clone this repository: `git clone https://github.com/Edutech-ARM/dockerfiles.git`
 2. Change directory to fastai: `cd dockerfiles/fastai`
 3. Modify the Dockerfile(if required) and Build: `docker build . -t streaminterrupt/fastai:<tag>`
+
+
+## Miscellaneous
+
+1. Update fastai and env for libraries
+```
+cd /code/fastai
+git pull
+conda env update
+```
+
+2. Limit docker memory and CPU access using -m (ram in MB's) and --cpus (allocate from your number of cpu's)
+`nvidia-docker run --rm --init -it -m 6000M --cpus="2.5" --name container1 -p 8888:8888 -v $CODE:/code -v $DATA:/data -w="/code/fastai" streaminterrupt/fastai:cuda9-cudnn7-ubuntu16.04`
 
 
 ## Docker Quick Reference

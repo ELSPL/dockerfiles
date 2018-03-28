@@ -34,6 +34,7 @@ RUN apt-get update --fix-missing && apt-get install -y --allow-downgrades \
     libjpeg-dev \
     zip \
     unzip \
+    htop \
     libpng-dev
 
 ##############
