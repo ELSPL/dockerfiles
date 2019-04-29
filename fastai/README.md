@@ -142,7 +142,7 @@ conda env update
 
 2. Docker for Beginners, [refer this](https://medium.freecodecamp.org/a-beginner-friendly-introduction-to-containers-vms-and-docker-79a9e3e119b) and [this](https://towardsdatascience.com/how-docker-can-help-you-become-a-more-effective-data-scientist-7fc048ef91d5).
 
-
+3. Docker with X11 forwarding, [refer this](https://marcosnietoblog.wordpress.com/2017/04/30/docker-image-with-opencv-with-x11-forwarding-for-gui/).
 
 
 
