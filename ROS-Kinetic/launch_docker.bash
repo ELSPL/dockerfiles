@@ -21,7 +21,7 @@
 # fi
 
 # Image Name From Dockerhub Preferably 
-IMAGE=${1:-streaminterrupt/ros-lab:v6}
+IMAGE=${1:-streaminterrupt/ros-lab:kinetic-v1}
 
 #custom port
 # PORT=4545
@@ -45,7 +45,7 @@ GPU=0
 # --device=/dev/:/dev/:m \
 # --privileged
 nvidia-docker run --rm -it --init \
-    --name ros_lab1 \
+    --name ros_lab2 \
     -e DISPLAY \
     -e QT_X11_NO_MITSHM=1 \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
