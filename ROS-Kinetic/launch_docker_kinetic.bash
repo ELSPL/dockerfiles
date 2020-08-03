@@ -7,21 +7,21 @@
 
 # Make sure processes in the container can connect to the x server
 # Necessary so gazebo can create a context for OpenGL rendering (even headless)
-# XAUTH=/tmp/.docker.xauth
-# if [ ! -f $XAUTH ]
-# then
-#     xauth_list=$(xauth nlist :0 | sed -e 's/^..../ffff/')
-#     if [ ! -z "$xauth_list" ]
-#     then
-#         echo $xauth_list | xauth -f $XAUTH nmerge -
-#     else
-#         touch $XAUTH
-#     fi
-#     chmod a+r $XAUTH
-# fi
+XAUTH=/tmp/.docker.xauth
+if [ ! -f $XAUTH ]
+then
+    xauth_list=$(xauth nlist :0 | sed -e 's/^..../ffff/')
+    if [ ! -z "$xauth_list" ]
+    then
+        echo $xauth_list | xauth -f $XAUTH nmerge -
+    else
+        touch $XAUTH
+    fi
+    chmod a+r $XAUTH
+fi
 
 # Image Name From Dockerhub Preferably 
-IMAGE=${1:-streaminterrupt/ros-lab:v6}
+IMAGE=${1:-streaminterrupt/ros-lab:kinetic-v1}
 
 #custom port
 # PORT=4545
@@ -45,9 +45,11 @@ GPU=0
 # --device=/dev/:/dev/:m \
 # --privileged
 nvidia-docker run --rm -it --init \
-    --name ros_lab1 \
+    --name ros_lab2 \
     -e DISPLAY \
     -e QT_X11_NO_MITSHM=1 \
+    -e XAUTHORITY=$XAUTH \
+    -v $XAUTH:$XAUTH \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
     -v $PWD:/notebooks -w /notebooks \
     $IMAGE
